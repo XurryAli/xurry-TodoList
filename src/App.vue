@@ -42,7 +42,7 @@ export default {
 		return {
 			inputVlue: '',
 			isShowIcon: true,
-			list: localStorage.fetch()
+			list: localStorage.fetch() || []  //为了防止第一保存localStorage的时候为null
 		}
 	},
 	mounted: function () {
@@ -57,6 +57,7 @@ export default {
 					type: 'success',
 					message: '添加成功!'
 				})
+
 			} else {
 				MessageBox.alert('事件不能为空！', '提示：', {
 					showClose: true,
