@@ -1,8 +1,8 @@
 <template>
-  <li class="todoitem">
+  <li class="todoitem" v-on:mouseenter="showDeleteIcon" v-on:mouseleave="hideDeleteIcon">
     <i @click="finish"></i>
     <span v-text="content"></span>
-    <el-button type="primary" @click="handleDelete" size="small" icon="el-icon-delete" circle></el-button>
+    <el-button type="primary" v-show="seen" @click="handleDelete" size="small" icon="el-icon-delete" circle></el-button>
   </li>
 </template>
 
@@ -10,12 +10,23 @@
 export default {
   name: 'todoitem',
   props: ['content', 'index'],
+  data () {
+    return {
+      seen: false
+    }
+  },
   methods: {
     handleDelete () {
       this.$emit('delete', this.index)
     },
     finish () {
       this.$emit('finish', this.index)
+    },
+    showDeleteIcon () {
+      this.seen = true
+    },
+    hideDeleteIcon () {
+      this.seen = false
     }
   }
 }
