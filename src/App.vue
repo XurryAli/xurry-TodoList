@@ -8,8 +8,7 @@
 				</el-input>
 			</div>
 			<ul class="todolist">
-				<todo-item
-					v-for="(item,index) in list"
+				<todo-item v-for="(item,index) in list"
 					:key="index"
 					:index="index"
 					:content="item.content"
@@ -52,7 +51,8 @@ export default {
 	methods: {
 		addItem () {
 			if (this.inputVlue !== '') {
-				this.list.push({'content': this.inputVlue, 'isFinished': false})
+				// 此处使用unshift是为了将每次添加的数据显示在最前面
+				this.list.unshift({'content': this.inputVlue, 'isFinished': false})
 				Message({
 					type: 'success',
 					message: '添加成功!'
