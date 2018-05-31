@@ -1,6 +1,6 @@
 <template>
 	<div class="todo-footer">
-		<div class="clearAll clearfix"><el-button type="primary" size="small" round @click="clearAllList">清空已完成事件</el-button></div>
+		<div class="clearAll clearfix"><el-button type="primary" size="small" round @click="clearAllList">清空所有事件</el-button><el-button type="primary" size="small" round @click="clearAllUnfinish">清空已完成事件</el-button></div>
 	</div>
 </template>
 
@@ -8,10 +8,13 @@
 <script>
 export default {
   name: 'todo-footer',
-  props:[],
+  props:['list'],
   methods: {
+    clearAllUnfinish () {
+    	this.$emit('clearAllUnfinish')
+    },
     clearAllList () {
-      this.$emit('clearAllList')
+    	this.$emit('clearAllList')
     }
   }
 }
@@ -28,5 +31,6 @@ export default {
 	}
 	.clearAll>button{
 	  float: right;
+	  margin-right: 20px;
 	}
 </style>
