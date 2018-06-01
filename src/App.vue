@@ -26,7 +26,7 @@
 import TodoItem from './components/todoitem'
 import TodoHeader from './components/TodoHeader'
 import TodoFooter from './components/TodoFooter'
-import localStorage from './assets/js/localStorage.js'
+import storage from './assets/js/storage.js'
 
 import { MessageBox } from 'element-ui'
 import { Message } from 'element-ui'
@@ -42,7 +42,7 @@ export default {
 		return {
 			inputVlue: '',
 			isShowIcon: true,
-			list: localStorage.fetch() || []  //为了防止第一保存localStorage的时候为null
+			list: storage.get('todolist') || []  //为了防止第一保存localStorage的时候为null
 		}
 	},
 	mounted: function () {
@@ -152,7 +152,7 @@ export default {
 				第三个是immediate：其值是true或false；确认是否以当前的初始值执行handler的函数。
 			*/
 			handler (list) {
-				localStorage.save(list)
+				storage.set('todolist', list)
 			},
 			deep: true,
 			immediate: true

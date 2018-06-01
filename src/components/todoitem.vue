@@ -32,6 +32,7 @@ export default {
 }
 </script>
 <style scoped>
+/*scoped 局部作用域*/
 .todoitem{
   border-bottom: 1px solid #ebeef5;
   padding: 10px;
